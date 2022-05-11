@@ -23,12 +23,14 @@ router.get('/:id', async(req, res) =>{
 })
 
 router.post('/', async(req, res) => {
+    
     const comment = new Comment({
         crowdfundID: req.body.id,
         content: req.body.content,
         user: req.body.user,
     })
     try{
+        await comment.save()
         res.send("Request success")
     }catch(err){
         console.log(err)
